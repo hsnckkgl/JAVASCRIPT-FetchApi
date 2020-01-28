@@ -2,41 +2,45 @@ document.getElementById("button1").addEventListener("click", getTextFile);
 document.getElementById("button2").addEventListener("click", getJSON);
 document.getElementById("button3").addEventListener("click", getApi);
 
-function getTextFile(){
-    fetch("textfile.txt").then(function(response){
+// From a Text File
+function getTextFile() {
+    fetch("textfile.txt").then(function (response) {
 
         return response.text();
-    }).then(function(data){
+    }).then(function (data) {
         document.getElementById("output").innerHTML += data;
     });
 }
 
-function getJSON(){
-    fetch("article.json").then(function(response){
+// From a JSON file
+function getJSON() {
+    fetch("article.json").then(function (response) {
 
         return response.json();
-    }).then(function(articles){
+    }).then(function (articles) {
 
         let output = "<ul>";
 
-        articles.forEach(function(article){
+        articles.forEach(function (article) {
             output += `<li>Title ${article.title} - Body ${article.body}</li>`
         });
-        
+
         document.getElementById("output").innerHTML += output;
     });
 }
-function getApi(){
-    fetch("https://api.github.com/users").then(function(response){
+
+// From an API source
+function getApi() {
+    fetch("https://api.github.com/users").then(function (response) {
 
         return response.json();
-    }).then(function(users){
-        
+    }).then(function (users) {
+
         let output = "<ul>";
-        users.forEach(function(user){
+        users.forEach(function (user) {
             output += `<li>Users ${user.login}</li>`;
         });
-        
+
         document.getElementById("output").innerHTML += output;
     });
 }
